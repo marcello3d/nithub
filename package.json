@@ -1,0 +1,23 @@
+{
+  "name": "nithub",
+  "description": "Nithub mashes up npm packages to github repositories",
+  "version": "0.0.1",
+  "homepage": "https://github.com/marcello3d/nithub",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/marcello3d/nithub.git"
+  },
+  "author": "Marcello Bastéa-Forte <marcello@cellosoft.com> (http://marcello.cellosoft.com/)",
+  "main": "server.js",
+  "keywords": ["npm", "github", "git", "nithub"],
+  "dependencies": {
+    "mongolian": ">=0.1.4",
+    "sprintf": "0.1.1",
+    "jade":"",
+    "express":"",
+    "log4js":""
+  },
+  "engines": {
+    "node": ">=0.4.0"
+  }
+}

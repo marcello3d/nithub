@@ -1,0 +1,32 @@
+!!! 5
+html
+  head
+    title nithub!
+    link(rel="stylesheet",href="/css/main.css", type="text/css")
+    script(src="/js/sort.js", type="text/javascript")
+  body
+    #main
+      #header
+        h1 nithub
+      #body
+        table(class="sortable")
+          tr
+            th package
+            th author
+            th link
+            th(style="text-align:right") watchers
+            th(style="text-align:right") forks
+            th(style="text-align:right") score
+            th tags
+          - each package in packages
+            tr
+              td
+                a(href="http://search.npmjs.org/#/"+package.name) #{package.name}
+              td #{package.info.author && package.info.author.name}
+              td
+                a(href=package.gitfo && package.gitfo.url || 'http://'+package.git.url) #{package.gitfo && package.gitfo.url || 'http://'+package.git.url }
+              td(style="text-align:right") #{package.gitfo && package.gitfo.watchers}
+              td(style="text-align:right") #{package.gitfo && package.gitfo.forks}
+              td(style="text-align:right") #{package.gitfo && package.gitfo.score}
+              td #{package.tags}
+
