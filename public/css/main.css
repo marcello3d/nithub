@@ -13,6 +13,12 @@ body {
 a {
   color: #07e;
 }
+p,h1,h2,h3 {
+    margin: 10px 0;
+}
+li {
+    margin-left: 20px;
+}
 table {
     border-spacing: 0;
     border: 1px solid #000;

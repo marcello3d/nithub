@@ -9,8 +9,18 @@ html
       #header
         h1 nithub
       #body
+        p Tracking #{stats.packages} githubbed packages from registry.npmjs.org.
+        p Contents:
+        ol
+          li
+            a(href="#everything") Everything
+          li
+            a(href="#deathmatch") Keyword Deathmatch!
+        a(name="everything")
+        h2 Everything
         table(class="sortable")
           tr
+            th rank
             th package
             th author
             th link
@@ -18,8 +28,9 @@ html
             th(style="text-align:right") forks
             th(style="text-align:right") score
             th tags
-          - each package in packages
+          - each package,index in packages
             tr
+              td #{index+1}.
               td
                 a(href="http://search.npmjs.org/#/"+package.name) #{package.name}
               td #{package.info.author && package.info.author.name}
@@ -29,4 +40,28 @@ html
               td(style="text-align:right") #{package.gitfo && package.gitfo.forks}
               td(style="text-align:right") #{package.gitfo && package.gitfo.score}
               td #{package.tags}
+        a(name="deathmatch")
+        h2 KEYWORD DEATCHMATCH!
+        - each deathMatch in deathMatches
+          h3 `#{deathMatch.name}`
+          table(class="sortable")
+            tr
+              th rank
+              th package
+              th author
+              th link
+              th(style="text-align:right") watchers
+              th(style="text-align:right") forks
+              th(style="text-align:right") score
+            - each package,index in deathMatch.entries
+              tr
+                td #{index+1}
+                td
+                  a(href="http://search.npmjs.org/#/"+package.name) #{package.name}
+                td #{package.info.author && package.info.author.name}
+                td
+                  a(href=package.gitfo && package.gitfo.url || 'http://'+package.git.url) #{package.gitfo && package.gitfo.url || 'http://'+package.git.url }
+                td(style="text-align:right") #{package.gitfo && package.gitfo.watchers}
+                td(style="text-align:right") #{package.gitfo && package.gitfo.forks}
+                td(style="text-align:right") #{package.gitfo && package.gitfo.score}
 
