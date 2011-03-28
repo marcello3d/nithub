@@ -9,8 +9,13 @@ html
       #header
         h1 nithub
       #body
+        p
+          | Nithub mashes up the npm and github apis to organize and rank npm packages.
+          | Browse the source at
+          a(href="https://github.com/marcello3d/nithub") github.com/marcello3d/nithub
+          | .
         p Tracking #{stats.packages} githubbed packages from registry.npmjs.org.
-        p Contents:
+        h2 Sections
         ol
           li
             a(href="#everything") Everything
@@ -39,10 +44,18 @@ html
               td(style="text-align:right") #{package.gitfo && package.gitfo.watchers}
               td(style="text-align:right") #{package.gitfo && package.gitfo.forks}
               td(style="text-align:right") #{package.gitfo && package.gitfo.score}
-              td #{package.tags}
+              td
+                - each tag,index in package.tags
+                  - if (index != 0)
+                    |,
+                  - if (tagMap[tag] && tagMap[tag].length>1)
+                    a(href="#tag_"+tag) #{tag}
+                  - else
+                    #{tag}
         a(name="deathmatch")
         h2 KEYWORD DEATCHMATCH!
         - each deathMatch in deathMatches
+          a(name="tag_"+deathMatch.name)
           h3 `#{deathMatch.name}`
           table(class="sortable")
             tr
