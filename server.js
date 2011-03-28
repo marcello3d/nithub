@@ -7,4 +7,3 @@ var app = require('./lib/www')
 app.listen(8000, function() {
     log.info("Started http://"+app.address().address+":"+app.address().port)
 })
-
