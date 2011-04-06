@@ -26,6 +26,7 @@ table {
 table th, table td {
     text-align: left;
     padding: 2px 4px;
+    white-space: nowrap;
 }
 table th {
     background-color: #ccc;
