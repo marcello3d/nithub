@@ -15,6 +15,7 @@ html
           a(href="https://github.com/marcello3d/nithub") github.com/marcello3d/nithub
           | .
         p Tracking #{stats.packages} githubbed packages from registry.npmjs.org.
+        p Last updated: ~#{Math.round((new Date-lastModified)/1000/60)}m ago
         h2 Sections
         ol
           li
@@ -33,6 +34,7 @@ html
             th(style="text-align:right") forks
             th(style="text-align:right") score
             th tags
+            th last scanned
           - each package,index in packages
             tr
               td #{index+1}.
@@ -40,10 +42,10 @@ html
                 a(href="http://search.npmjs.org/#/"+package.name) #{package.name}
               td #{package.info.author && package.info.author.name}
               td
-                a(href=package.gitfo && package.gitfo.url || 'http://'+package.git.url) #{package.gitfo && package.gitfo.url || 'http://'+package.git.url }
-              td(style="text-align:right") #{package.gitfo && package.gitfo.watchers}
-              td(style="text-align:right") #{package.gitfo && package.gitfo.forks}
-              td(style="text-align:right") #{package.gitfo && package.gitfo.score}
+                a(href=package.git && package.git.info && package.git.info.url || 'http://'+package.git.url) #{package.git && package.git.info && package.git.info.url || 'http://'+package.git.url }
+              td(style="text-align:right") #{package.git && package.git.info && package.git.info.watchers}
+              td(style="text-align:right") #{package.git && package.git.info && package.git.info.forks}
+              td(style="text-align:right") #{package.git && package.git.info && package.git.info.score}
               td
                 - each tag,index in package.tags
                   - if (index != 0)
@@ -52,6 +54,10 @@ html
                     a(href="#tag_"+tag) #{tag}
                   - else
                     #{tag}
+              td(style="text-align:right")
+                #{package.git && package.git.lastChecked && "~"+Math.round((new Date-package.git.lastChecked)/1000/60)+"m ago"}
+                - if (package.git && package.git.error)
+                  |, error: package.git.error
         a(name="deathmatch")
         h2 KEYWORD DEATCHMATCH!
         - each deathMatch in deathMatches
@@ -73,8 +79,8 @@ html
                   a(href="http://search.npmjs.org/#/"+package.name) #{package.name}
                 td #{package.info.author && package.info.author.name}
                 td
-                  a(href=package.gitfo && package.gitfo.url || 'http://'+package.git.url) #{package.gitfo && package.gitfo.url || 'http://'+package.git.url }
-                td(style="text-align:right") #{package.gitfo && package.gitfo.watchers}
-                td(style="text-align:right") #{package.gitfo && package.gitfo.forks}
-                td(style="text-align:right") #{package.gitfo && package.gitfo.score}
+                  a(href=package.git && package.git.info && package.git.info.url || 'http://'+package.git.url) #{package.git && package.git.info && package.git.info.url || 'http://'+package.git.url }
+                td(style="text-align:right") #{package.git && package.git.info && package.git.info.watchers}
+                td(style="text-align:right") #{package.git && package.git.info && package.git.info.forks}
+                td(style="text-align:right") #{package.git && package.git.info && package.git.info.score}
 
