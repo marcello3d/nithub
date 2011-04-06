@@ -11,7 +11,7 @@
   "main": "server.js",
   "keywords": ["npm", "github", "git", "nithub"],
   "dependencies": {
-    "mongolian": ">=0.1.4",
+    "mongolian": ">=0.1.6",
     "sprintf": "0.1.1",
     "jade":"",
     "express":"",
