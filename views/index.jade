@@ -14,8 +14,7 @@ html
           | Browse the source at
           a(href="https://github.com/marcello3d/nithub") github.com/marcello3d/nithub
           | .
-        p Tracking #{stats.packages} githubbed packages from registry.npmjs.org.
-        p Last updated: ~#{Math.round((new Date-lastModified)/1000/60)}m ago
+        p Tracking #{stats.packages} githubbed packages from registry.npmjs.org (last change spotted ~#{Math.round((new Date-lastModified)/1000/60)}m ago).
         h2 Sections
         ol
           li
@@ -33,8 +32,8 @@ html
             th(style="text-align:right") watchers
             th(style="text-align:right") forks
             th(style="text-align:right") score
-            th tags
             th scanned
+            th tags
           - each package,index in packages
             tr
               td #{index+1}.
@@ -46,6 +45,7 @@ html
               td(style="text-align:right") #{package.git && package.git.info && package.git.info.watchers}
               td(style="text-align:right") #{package.git && package.git.info && package.git.info.forks}
               td(style="text-align:right") #{package.git && package.git.info && package.git.info.score}
+              td(style="text-align:right") #{package.git && package.git.lastChecked && "~"+Math.round((new Date-package.git.lastChecked)/1000/60)+"m ago"}
               td
                 - each tag,index in package.tags
                   - if (index != 0)
@@ -54,10 +54,6 @@ html
                     a(href="#tag_"+tag) #{tag}
                   - else
                     #{tag}
-              td(style="text-align:right")
-                #{package.git && package.git.lastChecked && "~"+Math.round((new Date-package.git.lastChecked)/1000/60)+"m ago"}
-                - if (package.git && package.git.error)
-                  |, error: package.git.error
         a(name="deathmatch")
         h2 KEYWORD DEATCHMATCH!
         - each deathMatch in deathMatches
